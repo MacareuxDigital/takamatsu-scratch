@@ -317,12 +317,9 @@ const reducer = function (state, action) {
         }
         return state;
     case START_UPDATING_BEFORE_CREATING_NEW:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
             return Object.assign({}, state, {
                 loadingState: LoadingState.UPDATING_BEFORE_NEW
             });
-        }
-        return state;
     case START_ERROR:
         // fatal errors: there's no correct editor state for us to show
         if ([
