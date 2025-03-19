@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {
     defaultProjectId,
     getIsFetchingWithoutId,
+    requestNewProject,
     setProjectId
 } from '../reducers/project-state';
 
@@ -40,6 +41,9 @@ const HashParserHOC = function (WrappedComponent) {
             const hashMatch = window.location.pathname.match(/\/(\d+)$/);
             const hashProjectId = hashMatch === null ? defaultProjectId : hashMatch[1];
             this.props.setProjectId(hashProjectId.toString());
+            if(window.location.pathname.includes('projects/new')) {
+                this.props.onNewProject(true);
+            }
         }
         render () {
             const {
@@ -61,6 +65,7 @@ const HashParserHOC = function (WrappedComponent) {
         isFetchingWithoutId: PropTypes.bool,
         reduxProjectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         setProjectId: PropTypes.func,
+        onNewProject: PropTypes.func
     };
     const mapStateToProps = state => {
         const loadingState = state.scratchGui.projectState.loadingState;
@@ -73,6 +78,7 @@ const HashParserHOC = function (WrappedComponent) {
         setProjectId: projectId => {
             dispatch(setProjectId(projectId));
         },
+        onNewProject: needSave => dispatch(requestNewProject(needSave)),
     });
     // Allow incoming props to override redux-provided props. Used to mock in tests.
     const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
