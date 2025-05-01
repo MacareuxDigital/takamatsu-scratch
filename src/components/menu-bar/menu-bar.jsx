@@ -69,8 +69,8 @@ import aboutIcon from './icon--about.svg';
 import siteLogo from './logo.svg';
 
 import sharedMessages from '../../lib/shared-messages';
-import { setModalExtension } from '../../reducers/modal-choose-extension.js';
-import { BASE_API_URL } from '../../utils/constants.js';
+import {setModalExtension} from '../../reducers/modal-choose-extension.js';
+import {BASE_API_URL} from '../../utils/constants.js';
 
 const ariaMessages = defineMessages({
     language: {
@@ -239,7 +239,7 @@ class MenuBar extends React.Component {
             event.preventDefault();
         }
     }
-    handleLogout() {
+    handleLogout () {
         window.location.href = `${BASE_API_URL}/login`;
     }
     getSaveToComputerHandler (downloadProjectCallback) {
@@ -433,14 +433,17 @@ class MenuBar extends React.Component {
                                     place={this.props.isRtl ? 'left' : 'right'}
                                     onRequestClose={this.props.onRequestCloseFile}
                                 >
-                                    <MenuSection>
+                                    {/* hide the new project button for first release
+                                        See: https://github.com/MacareuxDigital/adventure-lab-cms/issues/129#issuecomment-2774723171
+                                    */}
+                                    {/* <MenuSection>
                                         <MenuItem
                                             isRtl={this.props.isRtl}
                                             onClick={this.handleClickNew}
                                         >
                                             {newProjectMessage}
                                         </MenuItem>
-                                    </MenuSection>
+                                    </MenuSection> */}
                                     {(this.props.canSave || this.props.canCreateCopy || this.props.canRemix) && (
                                         <MenuSection>
                                             {this.props.canSave && (
