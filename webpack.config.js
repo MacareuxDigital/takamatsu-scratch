@@ -48,7 +48,7 @@ const base = {
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),
         host: '127.0.0.1',
-        port: process.env.PORT || 8310,
+        port: process.env.PORT || 8301,
         open: true
     },
     output: {
