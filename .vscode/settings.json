@@ -3,5 +3,9 @@
     "[json]": {
         "editor.defaultFormatter": null,
         "editor.formatOnSave": false
+    },
+    "prettier.enable": false,
+    "[javascript]": {
+        "editor.defaultFormatter": null
     }
 }
